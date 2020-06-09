@@ -23,6 +23,10 @@ namespace SqlSugarDemo.Api.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// 控制器
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {

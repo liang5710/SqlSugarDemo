@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlSugarDemo.Api</name>
+    </assembly>
+    <members>
+        <member name="M:SqlSugarDemo.Api.Controllers.WeatherForecastController.Get">
+            <summary>
+            控制器
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
