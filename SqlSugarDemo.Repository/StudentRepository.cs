@@ -9,25 +9,25 @@ namespace SqlSugarDemo.Repository
 {
     public class StudentRepository : IStudentRepository
     {
-        private DbContext context;
-        private SqlSugarClient db;
-        private SimpleClient<Student> entityDB;
+        //private DbContext context;
+        //private SqlSugarClient db;
+        //private SimpleClient<Student> entityDB;
 
-        internal SqlSugarClient Db
-        {
-            get { return db; }
-            private set { db = value; }
-        }
-        public DbContext Context
-        {
-            get { return context; }
-            set { context = value; }
-        }
+        //internal SqlSugarClient Db
+        //{
+        //    get { return db; }
+        //    private set { db = value; }
+        //}
+        //public DbContext Context
+        //{
+        //    get { return context; }
+        //    set { context = value; }
+        //}
 
-        public StudentRepository() 
-        {
-            DbContext.Init(BaseDBConfig)
-        }
+        //public StudentRepository() 
+        //{
+        //    DbContext.Init(BaseDBConfig)
+        //}
 
         public int Sum(int i, int j)
         {
