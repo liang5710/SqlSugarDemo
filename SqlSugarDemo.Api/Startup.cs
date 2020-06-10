@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SqlSugarDemo.ORM;
 
 namespace SqlSugarDemo.Api
 {
@@ -28,6 +29,8 @@ namespace SqlSugarDemo.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            BaseDBConfig.ConnectionString = Configuration.GetSection("ConnectionString").Value;
 
             #region Swagger
             services.AddSwaggerGen(c =>
