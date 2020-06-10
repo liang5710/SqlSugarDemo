@@ -4,6 +4,16 @@
         <name>SqlSugarDemo.Api</name>
     </assembly>
     <members>
+        <member name="T:SqlSugarDemo.Api.Controllers.TestController">
+            <summary>
+            测试示例
+            </summary>
+        </member>
+        <member name="T:SqlSugarDemo.Api.Controllers.WeatherForecastController">
+            <summary>
+            天气管理
+            </summary>
+        </member>
         <member name="M:SqlSugarDemo.Api.Controllers.WeatherForecastController.Get">
             <summary>
             控制器

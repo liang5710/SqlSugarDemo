@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlSugarDemo.Model</name>
+    </assembly>
+    <members>
+        <member name="T:SqlSugarDemo.Model.MessageModel">
+            <summary>
+            通用返回信息类
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.MessageModel.Success">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.MessageModel.Msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="T:SqlSugarDemo.Model.Student">
+            <summary>
+            学生类
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.Student.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.Student.StuId">
+            <summary>
+            学生号
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.Student.Name">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Model.Student.CourseId">
+            <summary>
+            课程
+            </summary>
+        </member>
+    </members>
+</doc>

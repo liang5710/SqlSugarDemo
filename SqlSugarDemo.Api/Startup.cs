@@ -49,10 +49,13 @@ namespace SqlSugarDemo.Api
                         Url = new Uri("http://www.netcore.pub")
                     }
                 });
-
+                //×¢ÊÍÏÔÊ¾
                 var basePath = AppContext.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "SqlSugarDemo.Api.xml");
                 c.IncludeXmlComments(xmlPath, true);
+                //ÊµÌå×¢ÊÍÏÔÊ¾
+                var xmlModelPath = Path.Combine(basePath,"SqlSugarDemo.Model.xml");
+                c.IncludeXmlComments(xmlModelPath);
             });
             #endregion
         }

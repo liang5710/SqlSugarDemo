@@ -15,5 +15,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SqlSugarDemo.IService\SqlSugarDemo.IService.csproj" />
+    <ProjectReference Include="..\SqlSugarDemo.Model\SqlSugarDemo.Model.csproj" />
+    <ProjectReference Include="..\SqlSugarDemo.Service\SqlSugarDemo.Service.csproj" />
+  </ItemGroup>
+
 
 </Project>

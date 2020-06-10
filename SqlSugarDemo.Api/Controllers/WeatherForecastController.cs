@@ -7,6 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace SqlSugarDemo.Api.Controllers
 {
+    /// <summary>
+    /// 天气管理
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
