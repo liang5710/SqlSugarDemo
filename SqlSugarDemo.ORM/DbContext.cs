@@ -96,5 +96,31 @@ namespace SqlSugarDemo.ORM
             return new SimpleClient<T>(db);
         }
         #endregion
+
+        #region 静态方法
+
+        /// <summary>
+        /// 功能描述:获得一个DbContext
+        /// 作　　者:Blog.Core
+        /// </summary>
+        /// <param name="blnIsAutoCloseConnection">是否自动关闭连接（如果为false，则使用接受时需要手动关闭Db）</param>
+        /// <returns>返回值</returns>
+        public static DbContext GetDbContext(bool blnIsAutoCloseConnection = true)
+        {
+            return new DbContext(blnIsAutoCloseConnection);
+        }
+
+        /// <summary>
+        /// 功能描述:设置初始化参数
+        /// 作　　者:Blog.Core
+        /// </summary>
+        /// <param name="strConnectionString">连接字符串</param>
+        /// <param name="enmDbType">数据库类型</param>
+        public static void Init(string strConnectionString, DbType enmDbType = SqlSugar.DbType.MySql)
+        {
+            _connectionString = strConnectionString;
+            _dbType = enmDbType;
+        }
+        #endregion
     }
 }

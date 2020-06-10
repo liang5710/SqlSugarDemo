@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.Api", "SqlSugarDemo.Api\SqlSugarDemo.Api.csproj", "{56486DEE-0CAF-4FF2-AC28-F56C11A1F25F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarDemo.Model", "SqlSugarDemo.Model\SqlSugarDemo.Model.csproj", "{49620A0B-825C-4FD2-9AA8-7EEB78EEE91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.Model", "SqlSugarDemo.Model\SqlSugarDemo.Model.csproj", "{49620A0B-825C-4FD2-9AA8-7EEB78EEE91E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarDemo.IRepository", "SqlSugarDemo.IRepository\SqlSugarDemo.IRepository.csproj", "{66019949-79E9-4584-B807-98E8DA847275}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.IRepository", "SqlSugarDemo.IRepository\SqlSugarDemo.IRepository.csproj", "{66019949-79E9-4584-B807-98E8DA847275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarDemo.Repository", "SqlSugarDemo.Repository\SqlSugarDemo.Repository.csproj", "{D1C4F2CE-C806-4AEB-A912-140A0BB88FE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.Repository", "SqlSugarDemo.Repository\SqlSugarDemo.Repository.csproj", "{D1C4F2CE-C806-4AEB-A912-140A0BB88FE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarDemo.IService", "SqlSugarDemo.IService\SqlSugarDemo.IService.csproj", "{EBD57BD3-9B9D-4D78-8D7F-589D466D7EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.IService", "SqlSugarDemo.IService\SqlSugarDemo.IService.csproj", "{EBD57BD3-9B9D-4D78-8D7F-589D466D7EFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlSugarDemo.Service", "SqlSugarDemo.Service\SqlSugarDemo.Service.csproj", "{802046C6-B7C7-4875-83A1-3CDDEA5BA0F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.Service", "SqlSugarDemo.Service\SqlSugarDemo.Service.csproj", "{802046C6-B7C7-4875-83A1-3CDDEA5BA0F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlSugarDemo.ORM", "SqlSugarDemo.ORM\SqlSugarDemo.ORM.csproj", "{C4336342-67DE-4B81-B327-C6DC5CFEAE57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{802046C6-B7C7-4875-83A1-3CDDEA5BA0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{802046C6-B7C7-4875-83A1-3CDDEA5BA0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{802046C6-B7C7-4875-83A1-3CDDEA5BA0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4336342-67DE-4B81-B327-C6DC5CFEAE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4336342-67DE-4B81-B327-C6DC5CFEAE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4336342-67DE-4B81-B327-C6DC5CFEAE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4336342-67DE-4B81-B327-C6DC5CFEAE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

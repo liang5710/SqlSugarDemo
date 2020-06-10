@@ -12,6 +12,6 @@ namespace SqlSugarDemo.IRepository
         int Add(Student student);
         bool Delete(Student student);
         bool Update(Student student);
-        List<Student> Query(Expression<Func<Student, bool>> whereExpression);
+        List<Student> Query();
     }
 }

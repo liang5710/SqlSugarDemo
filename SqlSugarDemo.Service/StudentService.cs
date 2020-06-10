@@ -1,7 +1,10 @@
 ﻿using SqlSugarDemo.IRepository;
 using SqlSugarDemo.IService;
+using SqlSugarDemo.Model;
 using SqlSugarDemo.Repository;
 using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SqlSugarDemo.Service
 {
@@ -11,6 +14,23 @@ namespace SqlSugarDemo.Service
         public int Sum(int i, int j)
         {
             return dal.Sum(i, j);
+        }
+
+        public int Add(Student student) 
+        {
+            return dal.Add(student);
+        }
+        public bool Delete(Student student) 
+        {
+            return dal.Delete(student);
+        }
+        public bool Update(Student student) 
+        {
+            return dal.Update(student);
+        }
+        public List<Student> Query() 
+        {
+            return dal.Query();
         }
     }
 }

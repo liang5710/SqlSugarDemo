@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SqlSugarDemo.IRepository\SqlSugarDemo.IRepository.csproj" />
+    <ProjectReference Include="..\SqlSugarDemo.ORM\SqlSugarDemo.ORM.csproj" />
   </ItemGroup>
 
 </Project>
