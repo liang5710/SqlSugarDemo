@@ -50,9 +50,9 @@ namespace SqlSugarDemo.Repository
             return i>0;
         }
 
-        public List<Student> Query()
+        public List<Student> Query(Expression<Func<Student, bool>> whereExpression)
         {
-            return entityDB.GetList();
+            return entityDB.GetList(whereExpression);
         }
 
         public bool Update(Student student)

@@ -19,10 +19,16 @@ namespace SqlSugarDemo.Api.Controllers
     {
 
         private IStudentService studentService = new StudentService();
+
+        /// <summary>
+        /// 测试用例
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
         [HttpGet]
-        public int Get(int i, int j) 
+        public int Get(int i, int j)
         {
-           
             return studentService.Sum(i, j);
         }
 
@@ -32,20 +38,21 @@ namespace SqlSugarDemo.Api.Controllers
         /// <param name="student"></param>
         /// <returns></returns>
         [HttpPost]
-        public int Add(Student student) 
+        public int Add(Student student)
         {
             return studentService.Add(student);
         }
 
         /// <summary>
-        /// 获取学员列表
+        /// 获取学员信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}",Name ="Get")]
+        [HttpGet("{id}", Name = "Get")]
         public List<Student> Get(int id)
         {
-            return studentService.Query();
+            return studentService.Query(d => d.Id == id);
         }
+
     }
 }

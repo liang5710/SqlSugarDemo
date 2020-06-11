@@ -28,9 +28,9 @@ namespace SqlSugarDemo.Service
         {
             return dal.Update(student);
         }
-        public List<Student> Query() 
+        public List<Student> Query(Expression<Func<Student, bool>> whereExpression) 
         {
-            return dal.Query();
+            return dal.Query(whereExpression);
         }
     }
 }

@@ -9,6 +9,14 @@
             测试示例
             </summary>
         </member>
+        <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Get(System.Int32,System.Int32)">
+            <summary>
+            测试用例
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
         <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Add(SqlSugarDemo.Model.Student)">
             <summary>
             新增学员
@@ -18,7 +26,7 @@
         </member>
         <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Get(System.Int32)">
             <summary>
-            获取学员列表
+            获取学员信息
             </summary>
             <param name="id"></param>
             <returns></returns>
