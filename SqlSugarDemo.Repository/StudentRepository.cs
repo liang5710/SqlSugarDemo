@@ -13,6 +13,8 @@ namespace SqlSugarDemo.Repository
         private DbContext context;
         private SqlSugarClient db;
         private SimpleClient<Student> entityDB;
+        private readonly ITransaction _transaction;
+
 
         internal SqlSugarClient Db
         {
@@ -25,11 +27,13 @@ namespace SqlSugarDemo.Repository
             set { context = value; }
         }
 
-        public StudentRepository()
+        public StudentRepository(ITransaction transaction)
         {
+            _transaction = transaction;
             DbContext.Init(BaseDBConfig.ConnectionString);
             context = DbContext.GetDbContext();
-            db = context.Db;
+            //db = context.Db;
+            db = _transaction.GetDbClient();
             entityDB = context.GetEntityDB<Student>(db);
         }
 

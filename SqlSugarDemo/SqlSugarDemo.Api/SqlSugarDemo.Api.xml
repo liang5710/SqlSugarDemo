@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SqlSugarDemo.Api</name>
+    </assembly>
+    <members>
+        <member name="T:SqlSugarDemo.Api.Controllers.StudentController">
+            <summary>
+            测试示例
+            </summary>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Get(System.Int32,System.Int32)">
+            <summary>
+            测试用例
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Add(SqlSugarDemo.Model.Student)">
+            <summary>
+            新增学员
+            </summary>
+            <param name="student"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Controllers.StudentController.Get(System.Int32)">
+            <summary>
+            获取学员信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SqlSugarDemo.Api.Controllers.WeatherForecastController">
+            <summary>
+            天气管理
+            </summary>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Controllers.WeatherForecastController.Get">
+            <summary>
+            控制器
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
