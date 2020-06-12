@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,15 @@ namespace SqlSugarDemo.Api
         }
 
         public IConfiguration Configuration { get; }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var assemblysServices = Assembly.Load("SqlSugarDemo.Service");
+            builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();
+
+            var assemblysRepository = Assembly.Load("SqlSugarDemo.Repository");
+            builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces();
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -57,10 +68,11 @@ namespace SqlSugarDemo.Api
                 var xmlPath = Path.Combine(basePath, "SqlSugarDemo.Api.xml");
                 c.IncludeXmlComments(xmlPath, true);
                 //ÊµÌå×¢ÊÍÏÔÊ¾
-                var xmlModelPath = Path.Combine(basePath,"SqlSugarDemo.Model.xml");
+                var xmlModelPath = Path.Combine(basePath, "SqlSugarDemo.Model.xml");
                 c.IncludeXmlComments(xmlModelPath);
             });
             #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +85,8 @@ namespace SqlSugarDemo.Api
 
             #region Swagger
             app.UseSwagger();
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
             });
             #endregion

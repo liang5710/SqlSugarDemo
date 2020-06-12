@@ -18,8 +18,11 @@ namespace SqlSugarDemo.Api.Controllers
     public class StudentController : ControllerBase
     {
 
-        private IStudentService studentService = new StudentService();
-
+        private IStudentService _studentService;
+        public StudentController(IStudentService studentService)
+        {
+            this._studentService = studentService;
+        }
         /// <summary>
         /// 测试用例
         /// </summary>
@@ -29,7 +32,7 @@ namespace SqlSugarDemo.Api.Controllers
         [HttpGet]
         public int Get(int i, int j)
         {
-            return studentService.Sum(i, j);
+            return _studentService.Sum(i, j);
         }
 
         /// <summary>
@@ -40,7 +43,7 @@ namespace SqlSugarDemo.Api.Controllers
         [HttpPost]
         public int Add(Student student)
         {
-            return studentService.Add(student);
+            return _studentService.Add(student);
         }
 
         /// <summary>
@@ -51,7 +54,7 @@ namespace SqlSugarDemo.Api.Controllers
         [HttpGet("{id}", Name = "Get")]
         public List<Student> Get(int id)
         {
-            return studentService.Query(d => d.Id == id);
+            return _studentService.Query(d => d.Id == id);
         }
 
     }

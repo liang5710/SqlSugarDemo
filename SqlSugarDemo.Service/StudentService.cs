@@ -10,27 +10,32 @@ namespace SqlSugarDemo.Service
 {
     public class StudentService : IStudentService
     {
-        public IStudentRepository dal = new StudentRepository();
+        private IStudentRepository _studentRepository;
+        public StudentService(IStudentRepository studentRepository) 
+        {
+            this._studentRepository = studentRepository;
+        }
+      
         public int Sum(int i, int j)
         {
-            return dal.Sum(i, j);
+            return _studentRepository.Sum(i, j);
         }
 
         public int Add(Student student) 
         {
-            return dal.Add(student);
+            return _studentRepository.Add(student);
         }
         public bool Delete(Student student) 
         {
-            return dal.Delete(student);
+            return _studentRepository.Delete(student);
         }
         public bool Update(Student student) 
         {
-            return dal.Update(student);
+            return _studentRepository.Update(student);
         }
         public List<Student> Query(Expression<Func<Student, bool>> whereExpression) 
         {
-            return dal.Query(whereExpression);
+            return _studentRepository.Query(whereExpression);
         }
     }
 }
