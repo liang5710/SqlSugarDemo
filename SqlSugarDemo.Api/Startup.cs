@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SqlSugarDemo.Api.JwtAuth;
 using SqlSugarDemo.ORM;
 
 namespace SqlSugarDemo.Api
@@ -29,11 +33,16 @@ namespace SqlSugarDemo.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            var assemblysServices = Assembly.Load("SqlSugarDemo.Service");
-            builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();
+            //var assemblysServices = Assembly.Load("SqlSugarDemo.Service");
+            //builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();
 
-            var assemblysRepository = Assembly.Load("SqlSugarDemo.Repository");
-            builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces();
+            //var assemblysRepository = Assembly.Load("SqlSugarDemo.Repository");
+            //builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(Program).Assembly)
+                .Where(x => x.Name.EndsWith("service",StringComparison.OrdinalIgnoreCase)).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(Program).Assembly)
+                .Where(x => x.Name.EndsWith("repository", StringComparison.OrdinalIgnoreCase)).AsImplementedInterfaces();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -73,6 +82,31 @@ namespace SqlSugarDemo.Api
             });
             #endregion
 
+            #region jwt
+
+            services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
+
+            services.AddJwtBearer(Configuration.GetValue<string>("JwtOptions:SecurityKey"));
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(options=> 
+            //{
+            //    options.SaveToken = true;
+            //    options.RequireHttpsMetadata = false;
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidAudience="",
+            //        ValidIssuer="",
+            //        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""))
+            //    };
+            //});
+            #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,6 +128,8 @@ namespace SqlSugarDemo.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

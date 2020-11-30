@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace SqlSugarDemo.Api.Controllers
+namespace ExampleDemo.Core.Controllers
 {
     /// <summary>
-    /// 天气管理
+    /// 测试模块
     /// </summary>
     [ApiController]
     [Route("[controller]")]
@@ -28,11 +28,10 @@ namespace SqlSugarDemo.Api.Controllers
         }
 
         /// <summary>
-        /// 控制器
+        /// 获取全部数据
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
