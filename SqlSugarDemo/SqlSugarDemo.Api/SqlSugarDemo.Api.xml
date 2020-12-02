@@ -42,5 +42,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:SqlSugarDemo.Api.JwtAuth.JwtSettings.Issuer">
+            <summary>
+            签发人（一般写接口请求地址）
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Api.JwtAuth.JwtSettings.Audience">
+            <summary>
+            受众（一般写接口请求地址)
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Api.JwtAuth.JwtSettings.SecurityKey">
+            <summary>
+            签名的秘钥 
+            </summary>
+        </member>
     </members>
 </doc>

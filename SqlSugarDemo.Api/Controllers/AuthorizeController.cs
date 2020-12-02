@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using SqlSugarDemo.Api.JwtAuth;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SqlSugarDemo.Api.Controllers
 {
@@ -16,42 +18,33 @@ namespace SqlSugarDemo.Api.Controllers
     [ApiController]
     public class AuthorizeController : ControllerBase
     {
-        private readonly ILogger<AuthorizeController> _logger;
-        private readonly JwtOptions _jwtOptions;
+        private readonly JwtSettings _jwtSettings;
 
-        public AuthorizeController(ILogger<AuthorizeController> logger, IOptions<JwtOptions> jwtOptions) 
+        public AuthorizeController(IOptions<JwtSettings> options) 
         {
-            _logger = logger;
-            _jwtOptions = jwtOptions?.Value;
+            _jwtSettings = options.Value;
         }
-        [HttpPost]
-        public IActionResult Auth([FromForm] string username, [FromForm] string password)
-        {
-            // check account
-            if (!username.StartsWith("Wilson") || password != "123456") return BadRequest("username or password invalide");
 
-            //define claim 
-            var claims = new Claim[]
-            {
-                new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.Email, $"{username}@github.com"),
-                new Claim(ClaimTypes.Role, username == "WilsonPan" ? "Admin" : "Reader"),
-                new Claim(ClaimTypes.Hash, JwtHashHelper.GetHashString($"{username}:{password}:{System.DateTime.Now.Ticks}")),
+        [HttpPost]
+        public string GetToken(string userName, string password) 
+        {
+            var claims = new Claim[] { 
+                new Claim(ClaimTypes.Name,userName)
             };
 
-            //define JwtSecurityToken
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
             var token = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: claims,
-                expires: System.DateTime.Now.AddMinutes(5),
-                signingCredentials: _jwtOptions.SigningCredentials
-            );
+                _jwtSettings.Issuer,
+                _jwtSettings.Audience,
+                claims,
+                DateTime.Now,
+                DateTime.Now.AddMinutes(20),
+                creds
+                );
 
-            // generate token
-            var result = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return Ok(result);
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }

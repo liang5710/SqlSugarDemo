@@ -82,29 +82,30 @@ namespace SqlSugarDemo.Api
             });
             #endregion
 
-            #region jwt
+            #region jwt 认证
 
-            services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
+            JwtSettings jwtSettings = new JwtSettings();
+            services.Configure<JwtSettings>(Configuration.GetSection(nameof(JwtSettings)));
+            Configuration.GetSection("JwtSettings").Bind(jwtSettings);
 
-            services.AddJwtBearer(Configuration.GetValue<string>("JwtOptions:SecurityKey"));
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(options=> 
-            //{
-            //    options.SaveToken = true;
-            //    options.RequireHttpsMetadata = false;
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = true,
-            //        ValidateAudience = true,
-            //        ValidAudience="",
-            //        ValidIssuer="",
-            //        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""))
-            //    };
-            //});
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(o =>
+                {
+                    o.RequireHttpsMetadata = false;
+                    o.SaveToken = true;
+                    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtSettings.Issuer,
+                        ValidAudience = jwtSettings.Audience,
+                        ValidateLifetime=true,
+                        //用于签名验证
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.SecurityKey)),
+                        ValidateIssuer = false,
+                        ValidateAudience=false
+                            
+                    };
+                });
             #endregion
 
         }
@@ -125,13 +126,12 @@ namespace SqlSugarDemo.Api
             });
             #endregion
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
