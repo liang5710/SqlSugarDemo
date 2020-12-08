@@ -11,8 +11,9 @@ namespace SqlSugarDemo.Api.Controllers
     /// <summary>
     /// 天气管理
     /// </summary>
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -28,11 +29,10 @@ namespace SqlSugarDemo.Api.Controllers
         }
 
         /// <summary>
-        /// 控制器
+        /// 认证通过之后可访问
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

@@ -72,17 +72,45 @@ namespace SqlSugarDemo.Api
                         Url = new Uri("http://www.netcore.pub")
                     }
                 });
+
+                #region xml注释
                 //注释显示
+                //var file = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var basePath = AppContext.BaseDirectory;
                 var xmlPath = Path.Combine(basePath, "SqlSugarDemo.Api.xml");
                 c.IncludeXmlComments(xmlPath, true);
                 //实体注释显示
                 var xmlModelPath = Path.Combine(basePath, "SqlSugarDemo.Model.xml");
                 c.IncludeXmlComments(xmlModelPath);
+                #endregion
+
+                #region 启用Swagger Jwt验证
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+                {
+                    In=ParameterLocation.Header,
+                    Type=SecuritySchemeType.ApiKey,
+                    Description="在下框中输入请求头中需要添加Jwt授权Token:Bearer Token",
+                    Name="Authorization",
+                    BearerFormat="JWT",
+                    Scheme="Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+                {
+                    { 
+                        new OpenApiSecurityScheme{ 
+                            Reference=new OpenApiReference
+                            {
+                                Type=ReferenceType.SecurityScheme,
+                                Id="Bearer"
+                            }
+                        },new string[]{ }
+                    }
+                });
+                #endregion
             });
             #endregion
 
-            #region jwt 认证
+            #region JWT 认证
 
             JwtSettings jwtSettings = new JwtSettings();
             services.Configure<JwtSettings>(Configuration.GetSection(nameof(JwtSettings)));
@@ -107,7 +135,6 @@ namespace SqlSugarDemo.Api
                     };
                 });
             #endregion
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -126,12 +153,11 @@ namespace SqlSugarDemo.Api
             });
             #endregion
 
+            app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
