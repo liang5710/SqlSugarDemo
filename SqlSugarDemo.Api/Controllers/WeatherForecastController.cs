@@ -11,7 +11,6 @@ namespace SqlSugarDemo.Api.Controllers
     /// <summary>
     /// 天气管理
     /// </summary>
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase

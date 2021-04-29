@@ -4,6 +4,69 @@
         <name>SqlSugarDemo.Api</name>
     </assembly>
     <members>
+        <member name="M:SqlSugarDemo.Api.Common.ApiResultFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完成，返回结果处理
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:SqlSugarDemo.Api.Common.ResultState`1">
+            <summary>
+            返回结果对象
+            ReturnObject ResultState 
+            默认ReturnCode为成功,Message为成功.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:SqlSugarDemo.Api.Common.ResultState`1.Code">
+            <summary>
+            执行结果
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Api.Common.ResultState`1.Message">
+            <summary>
+            提示消息
+            </summary>
+        </member>
+        <member name="P:SqlSugarDemo.Api.Common.ResultState`1.Result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Common.ResultState`1.Success(`0,System.String)">
+            <summary>
+            成功
+            </summary>
+            <param name="result">返回结果</param>
+            <param name="msg">提示消息</param>
+        </member>
+        <member name="M:SqlSugarDemo.Api.Common.ResultState`1.Error(System.String,SqlSugarDemo.Api.Common.ReturnCode)">
+            <summary>
+            异常
+            </summary>
+            <param name="msg">提示消息</param>
+            <param name="code"></param>
+        </member>
+        <member name="F:SqlSugarDemo.Api.Common.ReturnCode.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:SqlSugarDemo.Api.Common.ReturnCode.NeedLogin">
+            <summary>
+            登录超时
+            </summary>
+        </member>
+        <member name="F:SqlSugarDemo.Api.Common.ReturnCode.Exception">
+            <summary>
+            程序异常
+            </summary>
+        </member>
+        <member name="F:SqlSugarDemo.Api.Common.ReturnCode.SysError">
+            <summary>
+            系统错误
+            </summary>
+        </member>
         <member name="T:SqlSugarDemo.Api.Controllers.StudentController">
             <summary>
             测试示例

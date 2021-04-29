@@ -14,7 +14,6 @@ namespace SqlSugarDemo.Api.Controllers
     /// <summary>
     /// 测试示例
     /// </summary>
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StudentController : ControllerBase

@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SqlSugarDemo.Api.Common;
 using SqlSugarDemo.Api.JwtAuth;
 using SqlSugarDemo.ORM;
 using Swashbuckle.AspNetCore.Filters;
@@ -50,6 +51,11 @@ namespace SqlSugarDemo.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<ApiResultFilter>();
+            });
 
             BaseDBConfig.ConnectionString = Configuration.GetSection("ConnectionString").Value;
 
@@ -139,6 +145,8 @@ namespace SqlSugarDemo.Api
                     };
                 });
             #endregion
+
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
