@@ -19,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SqlSugarDemo.Api.JwtAuth;
 using SqlSugarDemo.ORM;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace SqlSugarDemo.Api
 {
@@ -84,20 +85,23 @@ namespace SqlSugarDemo.Api
                 c.IncludeXmlComments(xmlModelPath);
                 #endregion
 
-                #region 启用Swagger Jwt验证
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+                // 在header中添加token，传递到后台
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+
+                #region Token绑定到ConfigureServices
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    In=ParameterLocation.Header,
-                    Type=SecuritySchemeType.ApiKey,
-                    Description="在下框中输入请求头中需要添加Jwt授权Token:Bearer Token",
-                    Name="Authorization",
-                    BearerFormat="JWT",
-                    Scheme="Bearer"
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
+                    Name = "Authorization",
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
                 });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement 
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { 
-                        new OpenApiSecurityScheme{ 
+                    {
+                        new OpenApiSecurityScheme{
                             Reference=new OpenApiReference
                             {
                                 Type=ReferenceType.SecurityScheme,

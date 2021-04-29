@@ -58,6 +58,5 @@ namespace SqlSugarDemo.Api.Controllers
         {
             return _studentService.Query(d => d.Id == id);
         }
-
     }
 }

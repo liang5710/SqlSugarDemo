@@ -42,6 +42,22 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SqlSugarDemo.Api.JwtAuth.HttpHelper.HttpPost(System.String,System.String,System.String)">
+            <summary>
+            调用WEBAPI方法
+            </summary>
+            <param name="url">地址</param>
+            <param name="body">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlSugarDemo.Api.JwtAuth.HttpHelper.ToDataTable(System.String,System.Data.DataTable)">
+            <summary>
+            Json 字符串 转换为 DataTable数据集合
+            </summary>
+            <param name="json"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
         <member name="P:SqlSugarDemo.Api.JwtAuth.JwtSettings.Issuer">
             <summary>
             签发人（一般写接口请求地址）
@@ -56,6 +72,25 @@
             <summary>
             签名的秘钥 
             </summary>
+        </member>
+        <member name="M:SqlSugarDemo.Api.JwtAuth.Snowflake.#ctor(System.Int64)">
+            <summary>
+            机器码
+            </summary>
+            <param name="workerId"></param>
+        </member>
+        <member name="M:SqlSugarDemo.Api.JwtAuth.Snowflake.tillNextMillis(System.Int64)">
+            <summary>
+            获取下一微秒时间戳
+            </summary>
+            <param name="lastTimestamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SqlSugarDemo.Api.JwtAuth.Snowflake.timeGen">
+            <summary>
+            生成当前时间戳
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

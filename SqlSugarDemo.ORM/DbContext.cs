@@ -116,7 +116,7 @@ namespace SqlSugarDemo.ORM
         /// </summary>
         /// <param name="strConnectionString">连接字符串</param>
         /// <param name="enmDbType">数据库类型</param>
-        public static void Init(string strConnectionString, DbType enmDbType = SqlSugar.DbType.MySql)
+        public static void Init(string strConnectionString, DbType enmDbType = SqlSugar.DbType.SqlServer)
         {
             _connectionString = strConnectionString;
             _dbType = enmDbType;
